@@ -20,11 +20,11 @@ def print_aiuto():
     """
     Questa funzione stampa l'aiuto del programma.
     """
-    print("\nUso risolvitore_torre_di_hanoi.py")
+    print("Uso risolvitore_torre_di_hanoi.py")
     print("\tpython risolvitore_torre_di_hanoi.py [numero di dischi] [argomenti]")
     print("[numero di dischi]:\n\til numero di dischi che si vogliono spostare dal piolo A al piolo C. Deve essere un numero intero positivo in base 10")
-    print("[argomenti]:\n\t-h, --help\t\tper aiuto")
-    print("\t-s, --sequenziale\tper avere un output sequenziale\n")
+    print("[argomenti]:\n\t-h, --help\t\t\tper aiuto")
+    print("\t-s, --sequenziale\tper avere un output sequenziale")
 
 def analisi_argomenti(argomenti):
     """
@@ -40,27 +40,24 @@ def analisi_argomenti(argomenti):
         elif arg.isdigit():
             numero_dischi = int(arg)
         else:
-            path_corrente = os.path.dirname(os.path.realpath(__file__)) # 
-            arg_path = os.path.join(path_corrente, arg)
-            if arg_path == __file__:
+            if arg == __file__:
                 pass
             else:
                 if arg == "-h" or arg == "--help":
                     print_aiuto()
+                    argomento = ""
                 else:
-                    arg_int = arg.replace('-', '')
-                    if (arg_int).isdigit():
+                    if (arg.replace('-', '')).isdigit():
                         print(CRED + "ERRORE l'argomento ", arg, " non è un numero positivo in base 10." + CRES)
                     else:
                         print(CRED + "ERRORE l'argomento " + arg + " non è definito" + CRES)
                         if argomenti.index(arg) == len(argomenti)-1:
                             print_aiuto()
                             argomento = ""
-                            
-                    argomento = ""
-            pass
-    return argomento, numero_dischi
 
+                argomento = ""
+    return argomento, numero_dischi
+									
 def raccoglimento_dati():
     """
     Questa funzione è responsabile del raccoglimento del numero di anelli.
@@ -95,7 +92,7 @@ def risolvitore_hanoi(numero_dischi, da, attraverso, a, argomento):
 
 def main():
     """
-     Questa è la funzione main.
+    Questa è la funzione main.
     """
     argomento, numero_dischi = analisi_argomenti(sys.argv)
     if argomento == "":
